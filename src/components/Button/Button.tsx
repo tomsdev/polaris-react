@@ -79,6 +79,9 @@ export interface ButtonProps {
 
 const DEFAULT_SIZE = 'medium';
 
+/**
+ * @uxpincomponent
+ */
 export function Button({
   id,
   url,

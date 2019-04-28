@@ -24,6 +24,9 @@ export interface LinkProps {
   onClick?(): void;
 }
 
+/**
+ * @uxpincomponent
+ */
 export function Link({
   url,
   children,
