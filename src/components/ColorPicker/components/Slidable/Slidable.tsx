@@ -31,7 +31,7 @@ if (!isServer) {
   window.addEventListener(
     'touchmove',
     (event) => {
-      if (!isDragging) {
+      if (!isDragging || isServer) {
         return;
       }
 

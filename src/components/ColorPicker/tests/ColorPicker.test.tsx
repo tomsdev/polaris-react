@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as targets from '@shopify/react-utilities/target';
 import {noop} from '@shopify/javascript-utilities/other';
 import {mountWithAppProvider} from 'test-utilities';
 import EventListener from '../../EventListener';
@@ -14,6 +15,12 @@ const red = {
 enum SlidableType {
   BrightnessSaturation,
   Hue,
+}
+
+const actualIsServer = targets.isServer;
+
+function mockIsServer(value: boolean) {
+  (targets as any).isServer = value;
 }
 
 describe('<ColorPicker />', () => {
@@ -86,6 +93,7 @@ describe('<ColorPicker />', () => {
   describe('EventListener', () => {
     afterEach(() => {
       window.dispatchEvent(new Event('mouseup'));
+      mockIsServer(actualIsServer);
     });
 
     it('passes false to passive prop for "mousemove" EventListener when dragging', () => {
@@ -125,6 +133,7 @@ describe('<ColorPicker />', () => {
     });
 
     it('prevents default for touchmove events if dragging the slider', () => {
+      mockIsServer(false);
       const colorPicker = mountWithAppProvider(
         <ColorPicker color={red} onChange={noop} />,
       );
@@ -147,6 +156,7 @@ describe('<ColorPicker />', () => {
     });
 
     it('allows default for touchmove events if not dragging the slider', () => {
+      mockIsServer(false);
       const touch = {clientX: 0, clientY: 0};
       const event = new TouchEvent('touchmove', {
         touches: [touch],
@@ -156,6 +166,29 @@ describe('<ColorPicker />', () => {
       window.dispatchEvent(event);
 
       expect(event.preventDefault).not.toHaveBeenCalled();
+    });
+
+    it('does not call the touchmove handler if window is not defined', () => {
+      mockIsServer(true);
+      const colorPicker = mountWithAppProvider(
+        <ColorPicker color={red} onChange={noop} />,
+      );
+
+      colorPicker
+        .find(Slidable)
+        .first()
+        .simulate('mousedown');
+
+      const touch = {clientX: 0, clientY: 0};
+      const event = new TouchEvent('touchmove', {
+        touches: [touch],
+        cancelable: true,
+      } as TouchEventInit);
+      Object.assign(event, {preventDefault: jest.fn()});
+
+      window.dispatchEvent(event);
+
+      expect(event.preventDefault).toHaveBeenCalledTimes(1);
     });
   });
 });
