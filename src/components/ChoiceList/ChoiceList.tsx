@@ -48,6 +48,9 @@ export interface ChoiceListProps {
   onChange?(selected: string[], name: string): void;
 }
 
+/**
+ * @uxpincomponent
+ */
 export function ChoiceList({
   title,
   titleHidden,
