@@ -64,4 +64,30 @@ describe('<Card />', () => {
     expect(card.find(Button)).toHaveLength(1);
     expect(card.find(Card.Header)).toHaveLength(1);
   });
+
+  it('renders a primary footer action', () => {
+    const card = mountWithAppProvider(
+      <Card primaryFooterAction={{content: 'test action'}}>
+        <p>Some card content.</p>
+      </Card>,
+    );
+
+    const primaryAction = card.find(Button).first();
+
+    expect(primaryAction).toHaveLength(1);
+    expect(primaryAction.text()).toBe('test action');
+  });
+
+  it('renders a secondary footer action', () => {
+    const card = mountWithAppProvider(
+      <Card secondaryFooterAction={{content: 'test action'}}>
+        <p>Some card content.</p>
+      </Card>,
+    );
+
+    const secondaryAction = card.find(Button).first();
+
+    expect(secondaryAction).toHaveLength(1);
+    expect(secondaryAction.text()).toBe('test action');
+  });
 });
