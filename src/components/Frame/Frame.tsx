@@ -70,6 +70,7 @@ const APP_FRAME_LOADING_BAR = 'AppFrameLoadingBar';
 
 type CombinedProps = FrameProps & WithAppProviderProps;
 
+/** @uxpincomponent */
 class Frame extends React.PureComponent<CombinedProps, State> {
   state: State = {
     skipFocused: false,

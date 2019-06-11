@@ -15,6 +15,7 @@ export interface TagProps {
   onRemove?(): void;
 }
 
+/** @uxpincomponent */
 export function Tag({children, disabled = false, onRemove}: TagProps) {
   const intl = useI18n();
   const className = classNames(disabled && styles.disabled, styles.Tag);

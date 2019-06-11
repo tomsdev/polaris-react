@@ -43,6 +43,7 @@ export interface AutocompleteProps {
 // Letting this be implicit works in this project but fails in projects that use
 // generated *.d.ts files.
 
+/** @uxpincomponent */
 export const Autocomplete: React.FunctionComponent<AutocompleteProps> & {
   ComboBox: typeof ComboBox;
   TextField: typeof TextField;

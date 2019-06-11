@@ -38,9 +38,7 @@ export const STATUS_LABELS: {[key in Status]: Status} = {
 
 const DEFAULT_SIZE = 'medium';
 
-/**
- * @uxpincomponent
- */
+/** @uxpincomponent */
 export function Badge({
   children,
   status,

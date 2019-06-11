@@ -34,6 +34,7 @@ interface DeprecatedProps {
 
 export type CombinedProps = SkeletonPageProps & DeprecatedProps;
 
+/** @uxpincomponent */
 export function SkeletonPage({
   children,
   fullWidth,

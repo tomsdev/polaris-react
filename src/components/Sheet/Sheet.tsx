@@ -43,6 +43,7 @@ export interface SheetProps {
   onExit?(): void;
 }
 
+/** @uxpincomponent */
 export function Sheet({
   children,
   open,

@@ -26,6 +26,7 @@ export interface SpinnerProps {
   accessibilityLabel?: string;
 }
 
+/** @uxpincomponent */
 export function Spinner({
   size = 'large',
   color = 'teal',

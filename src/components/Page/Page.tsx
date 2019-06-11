@@ -52,6 +52,7 @@ const APP_BRIDGE_PROPS: (keyof PageProps)[] = [
   'primaryAction',
 ];
 
+/** @uxpincomponent */
 class Page extends React.PureComponent<ComposedProps, never> {
   private titlebar: AppBridgeTitleBar.TitleBar | undefined;
 

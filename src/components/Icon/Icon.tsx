@@ -19,6 +19,7 @@ const COLORS_WITH_BACKDROPS = [
 // styleguide to generate the props explorer
 interface Props extends IconProps {}
 
+/** @uxpincomponent */
 export function Icon({source, color, backdrop, accessibilityLabel}: Props) {
   const intl = useI18n();
 

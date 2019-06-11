@@ -48,9 +48,7 @@ type CombinedProps = CheckboxProps & WithAppProviderProps;
 
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
-/**
- * @uxpincomponent
- */
+/** @uxpincomponent */
 class Checkbox extends React.PureComponent<CombinedProps, never> {
   private inputNode = React.createRef<HTMLInputElement>();
 

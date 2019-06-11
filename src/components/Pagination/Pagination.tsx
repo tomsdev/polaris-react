@@ -42,6 +42,7 @@ export interface PaginationProps extends PaginationDescriptor {
   plain?: boolean;
 }
 
+/** @uxpincomponent */
 export function Pagination({
   hasNext,
   hasPrevious,

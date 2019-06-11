@@ -34,6 +34,7 @@ interface State {
 
 const ParentCollapsibleExpandingContext = createContext(false);
 
+/** @uxpincomponent */
 class Collapsible extends React.Component<CollapsibleProps, State> {
   static contextType = ParentCollapsibleExpandingContext;
 

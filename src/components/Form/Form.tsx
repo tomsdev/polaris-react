@@ -39,6 +39,7 @@ export interface FormProps {
   onSubmit(event: React.FormEvent<HTMLFormElement>): void;
 }
 
+/** @uxpincomponent */
 export function Form({
   acceptCharset,
   action,
