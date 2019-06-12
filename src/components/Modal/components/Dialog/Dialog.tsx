@@ -23,6 +23,7 @@ export interface BaseDialogProps {
 
 export type DialogProps = BaseDialogProps & AnimationProps;
 
+/** @uxpinnamespace Modal */
 export function Dialog({
   instant,
   labelledBy,

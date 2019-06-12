@@ -5,6 +5,7 @@ export interface SectionProps {
   children?: React.ReactNode;
 }
 
+/** @uxpinnamespace Popover */
 export function Section({children}: SectionProps) {
   return <div className={styles.Section}>{children}</div>;
 }

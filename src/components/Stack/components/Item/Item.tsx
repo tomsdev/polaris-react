@@ -12,6 +12,7 @@ export interface ItemProps {
    */
 }
 
+/** @uxpinnamespace Stack */
 export function Item({children, fill}: ItemProps) {
   const className = classNames(styles.Item, fill && styles['Item-fill']);
 

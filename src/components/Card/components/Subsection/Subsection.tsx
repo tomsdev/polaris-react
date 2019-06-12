@@ -6,6 +6,7 @@ export interface SubsectionProps {
   children?: React.ReactNode;
 }
 
+/** @uxpinnamespace Card */
 export function Subsection({children}: SubsectionProps) {
   return <div className={styles.Subsection}>{children}</div>;
 }

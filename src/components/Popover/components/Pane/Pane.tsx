@@ -17,6 +17,7 @@ export interface PaneProps {
   onScrolledToBottom?(): void;
 }
 
+/** @uxpinnamespace Popover */
 export function Pane({
   fixed,
   sectioned,

@@ -37,6 +37,10 @@ interface State {
   expanded: boolean;
 }
 
+/**
+ * @uxpincomponent
+ * @uxpinnamespace Navigation
+ */
 export class Section extends React.Component<SectionProps, State> {
   state: State = {
     expanded: false,

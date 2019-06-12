@@ -9,6 +9,7 @@ export interface PanelProps {
   children?: React.ReactNode;
 }
 
+/** @uxpinnamespace Tabs */
 export function Panel({hidden, id, tabID, children}: PanelProps) {
   const className = classNames(styles.Panel, hidden && styles['Panel-hidden']);
   return (

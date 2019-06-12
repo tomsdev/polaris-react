@@ -8,6 +8,7 @@ export interface SectionProps {
   subdued?: boolean;
 }
 
+/** @uxpinnamespace Modal */
 export function Section({
   children,
   flush = false,

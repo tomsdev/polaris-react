@@ -25,7 +25,10 @@ export interface FilterControlProps {
   onFiltersChange?(appliedFilters: AppliedFilter[]): void;
 }
 
-/** @deprecated Use <Filters /> instead. */
+/**
+ * @deprecated Use <Filters /> instead.
+ * @uxpinnamespace ResourceList
+*/
 export function FilterControl({
   searchValue,
   appliedFilters = [],

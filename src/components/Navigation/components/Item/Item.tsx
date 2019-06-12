@@ -67,6 +67,7 @@ enum MatchState {
   NoMatch,
 }
 
+/** @uxpinnamespace Navigation */
 export function Item({
   url,
   icon,

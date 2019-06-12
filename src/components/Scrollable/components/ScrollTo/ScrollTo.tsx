@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useRef} from 'react';
 import {useUniqueId} from '../../../../utilities/unique-id';
 import {ScrollableContext} from '../../context';
 
+/** @uxpinnamespace Scrollable */
 export function ScrollTo() {
   const anchorNode = useRef<HTMLAnchorElement>(null);
   const scrollToPosition = useContext(ScrollableContext);

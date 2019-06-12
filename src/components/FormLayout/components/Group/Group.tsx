@@ -13,6 +13,7 @@ export interface GroupProps {
   helpText?: React.ReactNode;
 }
 
+/** @uxpinnamespace FormLayout */
 export function Group({children, condensed, title, helpText}: GroupProps) {
   const className = classNames(condensed ? styles.condensed : styles.grouped);
 

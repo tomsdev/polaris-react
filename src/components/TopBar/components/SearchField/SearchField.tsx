@@ -35,6 +35,7 @@ export interface SearchFieldProps {
 
 export type ComposedProps = SearchFieldProps & WithAppProviderProps;
 
+/** @uxpinnamespace TopBar */
 export class SearchField extends React.Component<ComposedProps, never> {
   private input: React.RefObject<HTMLInputElement> = React.createRef();
   private searchId = getUniqueId();

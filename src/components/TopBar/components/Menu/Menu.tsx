@@ -21,6 +21,7 @@ export interface MenuProps {
   onClose(): void;
 }
 
+/** @uxpinnamespace TopBar */
 export function Menu(props: MenuProps) {
   const {actions, onOpen, onClose, open, activatorContent, message} = props;
 
