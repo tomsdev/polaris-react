@@ -27,6 +27,7 @@ export interface FilterControlProps {
 
 /**
  * @deprecated Use <Filters /> instead.
+ * @uxpincomponent ResourceList.FilterControl
  * @uxpinnamespace ResourceList
 */
 export function FilterControl({

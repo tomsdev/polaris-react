@@ -6,7 +6,10 @@ import {Menu, MenuProps} from '../Menu';
 
 import styles from './UserMenu.scss';
 
-/** @uxpinnamespace TopBar */
+/**
+ * @uxpincomponent TopBar.UserMenu
+ * @uxpinnamespace TopBar
+ */
 export interface UserMenuProps {
   /** An array of action objects that are rendered inside of a popover triggered by this menu */
   actions: {items: IconableAction[]}[];
