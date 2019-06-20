@@ -54,6 +54,7 @@ export interface ComboBoxProps {
   onEndReached?(): void;
 }
 
+/** @uxpinnamespace Autocomplete */
 export class ComboBox extends React.PureComponent<ComboBoxProps, State> {
   static getDerivedStateFromProps(
     {
