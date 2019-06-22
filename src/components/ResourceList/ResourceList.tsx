@@ -87,6 +87,7 @@ export interface ResourceListProps {
 
 type CombinedProps = ResourceListProps & WithAppProviderProps;
 
+/** @uxpincomponent */
 class ResourceList extends React.Component<CombinedProps, State> {
   static Item = ResourceItem;
   // eslint-disable-next-line import/no-deprecated

@@ -36,6 +36,7 @@ export interface CardProps {
 // Letting this be implicit works in this project but fails in projects that use
 // generated *.d.ts files.
 
+/** @uxpincomponent */
 export const Card: React.FunctionComponent<CardProps> & {
   Header: typeof Header;
   Section: typeof Section;

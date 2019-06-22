@@ -13,6 +13,7 @@ import {useAppBridge} from '../../utilities/app-bridge';
 // crashing if we write `ComposedProps = ToastProps & WithAppProviderProps`
 export interface ToastProps extends ToastProps {}
 
+/** @uxpincomponent */
 // This does have a display name, but the linting has a bug in it
 // https://github.com/yannickcr/eslint-plugin-react/issues/2324
 // eslint-disable-next-line react/display-name
