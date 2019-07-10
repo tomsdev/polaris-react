@@ -1,6 +1,7 @@
 import React from 'react';
 import {classNames} from '../../utilities/css';
 import DisplayText from '../DisplayText';
+import Loading from '../Loading';
 import SkeletonDisplayText from '../SkeletonDisplayText';
 import SkeletonBodyText from '../SkeletonBodyText';
 
@@ -23,6 +24,8 @@ export interface Props {
   secondaryActions?: number;
   /** Shows a skeleton over the breadcrumb */
   breadcrumbs?: boolean;
+  /** Shows the frame loading bar */
+  loading?: boolean;
   /** The child elements to render in the skeleton page. */
   children?: React.ReactNode;
 }
@@ -47,6 +50,7 @@ class SkeletonPage extends React.PureComponent<CombinedProps, never> {
       secondaryActions,
       title = '',
       breadcrumbs,
+      loading = true,
       polaris: {intl},
     } = this.props;
 
@@ -87,6 +91,8 @@ class SkeletonPage extends React.PureComponent<CombinedProps, never> {
       </div>
     ) : null;
 
+    const loadingMarkup = loading ? <Loading /> : null;
+
     const headerMarkup = !this.props.polaris.appBridge ? (
       <div className={headerClassName}>
         {breadcrumbMarkup}
@@ -106,6 +112,7 @@ class SkeletonPage extends React.PureComponent<CombinedProps, never> {
       >
         {headerMarkup}
         <div className={styles.Content}>{children}</div>
+        {loadingMarkup}
       </div>
     );
   }
