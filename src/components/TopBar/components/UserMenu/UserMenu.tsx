@@ -7,7 +7,7 @@ import {Menu, MenuProps} from '../Menu';
 import styles from './UserMenu.scss';
 
 /**
- * @uxpincomponent TopBar.UserMenu
+ * @uxpincomponent
  * @uxpinnamespace TopBar
  */
 export interface UserMenuProps {

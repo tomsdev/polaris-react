@@ -21,7 +21,7 @@ export interface FileUploadProps {
 }
 
 /**
- * @uxpincomponent DropZone.FileUpload
+ * @uxpincomponent
  * @uxpinnamespace DropZone
  */
 export function FileUpload(props: FileUploadProps) {
