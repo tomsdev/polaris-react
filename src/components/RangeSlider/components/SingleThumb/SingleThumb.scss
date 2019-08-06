@@ -159,6 +159,10 @@ $range-thumb-shadow-focus: 0 0 0 rem(1px) color('indigo');
       );
       border-color: color('indigo');
       box-shadow: $range-thumb-shadow-focus;
+
+      @media (-ms-high-contrast: active) {
+        background: ms-high-contrast-color('selected-text-background');
+      }
     }
   }
 }
