@@ -144,7 +144,7 @@ $range-thumb-shadow-focus: 0 0 0 rem(1px) color('indigo');
   }
 
   // match `error` specificity for interaction styles
-  .RangeSlider &:focus {
+  &:focus {
     // repeated so that `focus` can override `error`
     --progress-lower: #{color('indigo')};
 
