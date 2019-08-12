@@ -22,6 +22,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Fixed bug where `Autocomplete` was bubbling up the `Enter` key event unexpectedly ([#1887](https://github.com/Shopify/polaris-react/pull/1887))
 - Fixed `ContextualSaveBar` actions overflowing on small screens ([#1967](https://github.com/Shopify/polaris-react/pull/1967))
 - Fixed `Tabs` rollup automatically opening from keyboard navigation of tab list ([#1933](https://github.com/Shopify/polaris-react/pull/1933))
+- Fixed `ResourceList` `Item` deselect ([#1952](https://github.com/Shopify/polaris-react/pull/1952))
 
 ### Documentation
 
