@@ -6,7 +6,6 @@ $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 .ContextualSaveBar {
   display: flex;
-  height: top-bar-height();
   background-color: color('white');
   box-shadow: $shadow;
 
@@ -26,7 +25,6 @@ $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex: 0 0 layout-width(nav);
     align-items: center;
-    height: 100%;
     padding: 0 spacing();
     border-right: 1px solid $off-white-border;
     background-color: $off-white;
@@ -36,8 +34,10 @@ $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 .Contents {
   display: flex;
   flex: 1 1 auto;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  min-height: top-bar-height();
   min-width: 1px;
   max-width: layout-width(primary, max) + layout-width(secondary, max) +
     layout-width(inner-spacing);
@@ -52,16 +52,25 @@ $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   @include page-content-when-not-partially-condensed {
     padding: 0 spacing(extra-loose);
   }
+
+  > * {
+    margin: 1rem 0;
+  }
 }
 
 .Message {
   @include truncate;
   @include text-style-heading;
   @include text-emphasis-subdued;
+  margin-right: spacing(loose);
 }
 
 .ActionContainer {
-  flex-shrink: 0;
+  margin: 1rem 0;
+
+  // @include breakpoint-after(550px) {
+  //   margin: 0;
+  // }
 }
 
 .Action {
