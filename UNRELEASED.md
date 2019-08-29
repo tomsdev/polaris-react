@@ -12,6 +12,8 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 
 ### Bug fixes
 
+- Fixed `BulkActions` checkbox losing on selection focus ([#2138](https://github.com/Shopify/polaris-react/pull/2138))
+
 ### Documentation
 
 - Converted `Form`, `Frame`, and `Loading` examples to functional components ([#2130](https://github.com/Shopify/polaris-react/pull/2130))
