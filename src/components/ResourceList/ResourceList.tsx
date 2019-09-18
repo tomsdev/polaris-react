@@ -368,6 +368,7 @@ class ResourceList extends React.Component<CombinedProps, State> {
       filterControl,
       emptyState,
       loading,
+      hasMoreItems,
       showHeader = false,
       sortOptions,
       sortValue,
@@ -460,9 +461,14 @@ class ResourceList extends React.Component<CombinedProps, State> {
       <div className={styles['HeaderWrapper-overlay']} />
     ) : null;
 
-    const showNoResults = filterControl && !this.itemsExist() && !loading;
+    const showNoResults =
+      filterControl && !this.itemsExist() && hasMoreItems && !loading;
+
+    const showEmptyState =
+      emptyState !== undefined && !this.itemsExist() && !hasMoreItems;
 
     const headerMarkup = !showNoResults &&
+      !showEmptyState &&
       (showHeader || needsHeader) &&
       this.listRef.current && (
         <div className={styles.HeaderOuterWrapper}>
@@ -507,6 +513,8 @@ class ResourceList extends React.Component<CombinedProps, State> {
       </div>
     ) : null;
 
+    const emptyStateMarkup = showEmptyState ? emptyState : null;
+
     const defaultTopPadding = 8;
     const topPadding =
       loadingPosition > 0 ? loadingPosition : defaultTopPadding;
@@ -550,9 +558,7 @@ class ResourceList extends React.Component<CombinedProps, State> {
         {loadingOverlay}
         {items.map(this.renderItem)}
       </ul>
-    ) : (
-      noResultsMarkup
-    );
+    ) : null;
 
     const context = {
       selectable: this.selectable,
@@ -569,6 +575,8 @@ class ResourceList extends React.Component<CombinedProps, State> {
           {filterControlMarkup}
           {headerMarkup}
           {listMarkup}
+          {noResultsMarkup}
+          {emptyStateMarkup}
           {loadingWithoutItemsMarkup}
         </div>
       </ResourceListContext.Provider>

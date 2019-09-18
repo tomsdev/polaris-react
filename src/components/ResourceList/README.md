@@ -84,6 +84,51 @@ A resource list with simple items and no bulk actions, sorting, or filtering.
 </Card>
 ```
 
+### Resource list with empty state
+
+Use to align the empty state of a list view with the state of the view when there are one or more resources
+
+```jsx
+<Card>
+  <ResourceList
+    hasMoreItems
+    resourceName={{singular: 'customer', plural: 'customers'}}
+    items={[
+      {
+        id: 341,
+        url: 'customers/341',
+        name: 'Mae Jemison',
+        location: 'Decatur, USA',
+      },
+      {
+        id: 256,
+        url: 'customers/256',
+        name: 'Ellen Ochoa',
+        location: 'Los Angeles, USA',
+      },
+    ]}
+    renderItem={(item) => {
+      const {id, url, name, location} = item;
+      const media = <Avatar customer size="medium" name={name} />;
+
+      return (
+        <ResourceItem
+          id={id}
+          url={url}
+          media={media}
+          accessibilityLabel={`View details for ${name}`}
+        >
+          <h3>
+            <TextStyle variation="strong">{name}</TextStyle>
+          </h3>
+          <div>{location}</div>
+        </ResourceItem>
+      );
+    }}
+  />
+</Card>
+```
+
 ### Resource List with selection and no bulk actions
 
 A resource list with simple items and selection.
