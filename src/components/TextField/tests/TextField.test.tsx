@@ -1024,10 +1024,7 @@ describe('<TextField />', () => {
       const textField = mountWithAppProvider(
         <TextField label="TextField" onChange={noop} />,
       );
-      const connectedChild = textField
-        .find(Connected)
-        .find('div')
-        .first();
+      const connectedChild = textField.find(Connected).find('div.TextField');
 
       connectedChild.simulate('click');
 
@@ -1042,15 +1039,13 @@ describe('<TextField />', () => {
       );
       let connectedInteriorWrapper = textField
         .find(Connected)
-        .find('div')
-        .first();
+        .find('div.TextField');
 
       connectedInteriorWrapper.simulate('focus');
 
       connectedInteriorWrapper = textField
         .find(Connected)
-        .find('div')
-        .first();
+        .find('div.TextField');
 
       expect(connectedInteriorWrapper.hasClass('focus')).toBe(true);
     });
