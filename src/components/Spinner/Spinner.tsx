@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {classNames, variationName} from '../../utilities/css';
 import {useI18n} from '../../utilities/i18n';
 import {Image} from '../Image';
+import {VisuallyHidden} from '../VisuallyHidden';
 import styles from './Spinner.scss';
 import {spinnerLarge, spinnerSmall} from './images';
 
@@ -24,14 +25,22 @@ export interface SpinnerProps {
   size?: Size;
   /** Accessible label for the spinner */
   accessibilityLabel?: string;
+  /** Allows the component to apply the correct accessibility roles based on focus */
+  hasFocusableParent?: boolean;
 }
 
 export function Spinner({
   size = 'large',
   color = 'teal',
   accessibilityLabel,
+  hasFocusableParent,
 }: SpinnerProps) {
   const intl = useI18n();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   if (size === 'large' && COLORS_FOR_LARGE_SPINNER.indexOf(color) < 0) {
     if (process.env.NODE_ENV === 'development') {
@@ -57,14 +66,23 @@ export function Spinner({
 
   const spinnerSVG = size === 'large' ? spinnerLarge : spinnerSmall;
 
+  const spanAttributes = {
+    ...(!hasFocusableParent && {role: 'status'}),
+  };
+
+  const accessibilityLabelMarkup = (hasMounted || !hasFocusableParent) && (
+    <VisuallyHidden>{accessibilityLabel}</VisuallyHidden>
+  );
+
   return (
-    <Image
-      alt=""
-      source={spinnerSVG}
-      className={className}
-      draggable={false}
-      role="status"
-      aria-label={accessibilityLabel}
-    />
+    <React.Fragment>
+      <Image
+        alt=""
+        source={spinnerSVG}
+        className={className}
+        draggable={false}
+      />
+      <span {...spanAttributes}>{accessibilityLabelMarkup}</span>
+    </React.Fragment>
   );
 }
