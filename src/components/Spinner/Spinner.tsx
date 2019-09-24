@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {classNames, variationName} from '../../utilities/css';
 import {useI18n} from '../../utilities/i18n';
 import {Image} from '../Image';
 import {VisuallyHidden} from '../VisuallyHidden';
+import {useIsAfterInitialMount} from '../../utilities/use-is-after-initial-mount';
 import styles from './Spinner.scss';
 import {spinnerLarge, spinnerSmall} from './images';
 
@@ -36,11 +37,7 @@ export function Spinner({
   hasFocusableParent,
 }: SpinnerProps) {
   const intl = useI18n();
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  const isAfterInitialMount = useIsAfterInitialMount();
 
   if (size === 'large' && COLORS_FOR_LARGE_SPINNER.indexOf(color) < 0) {
     if (process.env.NODE_ENV === 'development') {
@@ -70,7 +67,8 @@ export function Spinner({
     ...(!hasFocusableParent && {role: 'status'}),
   };
 
-  const accessibilityLabelMarkup = (hasMounted || !hasFocusableParent) && (
+  const accessibilityLabelMarkup = (isAfterInitialMount ||
+    !hasFocusableParent) && (
     <VisuallyHidden>{accessibilityLabel}</VisuallyHidden>
   );
 

@@ -55,6 +55,16 @@ Smaller than the default spinner.
 
 ---
 
+## Accessibility
+
+<!-- content-for: web -->
+
+SVGs after often displayed inconsistently. The `Spinner` components accessibility is highly contextual. When the parent component is focusable you'll need to set the `hasFocusableParent` prop for the appropriate `role` attribute to be applied.
+
+<!-- /content-for-->
+
+---
+
 ## Best practices
 
 The spinner component should:
