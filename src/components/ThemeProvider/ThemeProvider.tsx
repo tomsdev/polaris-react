@@ -1,12 +1,14 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 import {ThemeContext} from '../../utilities/theme';
-import {Theme} from '../../utilities/theme/types';
-import {setColors} from '../../utilities/theme/utils';
+import {Theme, CSSProperties} from '../../utilities/theme/types';
+import {setColors} from '../../utilities/theme/legacy-utils';
+import {Colors} from '../../utilities/theme/utils';
 
 interface State {
   theme: Theme;
-  colors: string[][] | undefined;
+  colors: CSSProperties | undefined;
+  legacyColors: string[][] | undefined;
 }
 
 interface ThemeProviderProps {
@@ -16,7 +18,7 @@ interface ThemeProviderProps {
   children?: React.ReactNode;
 }
 
-const defaultTheme = {
+const legacyDefaultTheme = {
   '--top-bar-background': '#00848e',
   '--top-bar-color': '#f9fafb',
   '--top-bar-background-lighter': '#1d9ba4',
@@ -25,7 +27,8 @@ const defaultTheme = {
 export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
   state: State = {
     theme: setThemeContext(this.props.theme),
-    colors: setColors(this.props.theme),
+    colors: Colors(this.props.theme),
+    legacyColors: setColors(this.props.theme),
   };
 
   componentDidUpdate({theme: prevTheme}: ThemeProviderProps) {
@@ -37,7 +40,8 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
     // eslint-disable-next-line react/no-did-update-set-state
     this.setState({
       theme: setThemeContext(theme),
-      colors: setColors(theme),
+      colors: Colors(theme),
+      legacyColors: setColors(theme),
     });
   }
 
@@ -45,8 +49,11 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
     const {
       theme: {logo = null, ...rest},
     } = this.state;
-    const {children} = this.props;
-    const styles = this.createStyles() || defaultTheme;
+    const {
+      props: {children},
+      state: {colors},
+    } = this;
+    const legacyStyles = this.createLegacyStyles() || legacyDefaultTheme;
 
     const theme = {
       ...rest,
@@ -55,20 +62,26 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
 
     return (
       <ThemeContext.Provider value={theme}>
-        <div style={styles}>{children}</div>
+        <div style={legacyStyles}>
+          <div style={colors}>{children}</div>
+        </div>
       </ThemeContext.Provider>
     );
   }
 
-  createStyles() {
-    const {colors} = this.state;
-    return colors
-      ? colors.reduce((state, [key, value]) => ({...state, [key]: value}), {})
+  createLegacyStyles() {
+    const {legacyColors} = this.state;
+    return legacyColors
+      ? legacyColors.reduce(
+          (state, [key, value]) => ({...state, [key]: value}),
+          {},
+        )
       : null;
   }
 }
 
 function setThemeContext(ctx: Theme): Theme {
+  // TODO: consider adding legacy colors to theme context
   const {colors, ...theme} = ctx;
   return {...theme};
 }

@@ -17,12 +17,24 @@ export interface ThemeColor {
   [key: string]: string;
 }
 
+export type CSSProperties = {
+  [key: string]: string;
+};
+
 export interface TopBar extends ThemeColor {
   background: string;
 }
 
 export type ThemeColors = {
-  topBar: TopBar;
+  topBar?: TopBar;
+  surface?: string;
+  onSurface?: string;
+  interactive?: string;
+  branded?: string;
+  critical?: string;
+  warning?: string;
+  highlight?: string;
+  success?: string;
 };
 
 export interface Theme {
