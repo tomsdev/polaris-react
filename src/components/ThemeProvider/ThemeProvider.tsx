@@ -4,6 +4,7 @@ import {ThemeContext} from '../../utilities/theme';
 import {Theme, CSSProperties} from '../../utilities/theme/types';
 import {setColors} from '../../utilities/theme/legacy-utils';
 import {Colors} from '../../utilities/theme/utils';
+import {themeProvider} from '../shared';
 
 import styles from './ThemeProvider.scss';
 
@@ -65,7 +66,11 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
     return (
       <ThemeContext.Provider value={theme}>
         <div style={legacyStyles}>
-          <div style={colors} className={styles.ThemeProvider}>
+          <div
+            style={colors}
+            className={styles.ThemeProvider}
+            {...themeProvider.props}
+          >
             {children}
           </div>
         </div>
