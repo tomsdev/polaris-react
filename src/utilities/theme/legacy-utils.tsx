@@ -13,21 +13,25 @@ export function setColors(theme: Theme | undefined): string[][] | undefined {
   let colorPairs;
   if (theme && theme.colors) {
     Object.entries(theme.colors).forEach(([colorKey, pairs]) => {
-      const colorKeys = Object.keys(pairs as TopBar);
-      if (colorKey === 'topBar' && colorKeys.length > 1) {
-        colorPairs = colorKeys.map((key: string) => {
-          const {topBar} = theme.colors as ThemeColors;
-          const defaultTopBar: TopBar = {background: ''};
-          const colors = topBar ? topBar : defaultTopBar;
-          return [constructColorName(colorKey, key), colors[key]];
-        });
-      } else {
-        colorPairs = parseColors([colorKey, pairs as TopBar]);
+      if (isTopBar(pairs)) {
+        const colorKeys = Object.keys(pairs);
+        if (colorKey === 'topBar' && colorKeys.length > 1) {
+          colorPairs = colorKeys.map((key: string) => {
+            const colors = (theme.colors as ThemeColors).topBar;
+            return colors && [constructColorName(colorKey, key), colors[key]];
+          });
+        } else {
+          colorPairs = parseColors([colorKey, pairs]);
+        }
       }
     });
   }
 
   return colorPairs;
+}
+
+function isTopBar(arg: string | TopBar | undefined): arg is TopBar {
+  return (arg as TopBar).background !== undefined;
 }
 
 export function needsVariant(name: string) {
