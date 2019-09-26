@@ -5,6 +5,8 @@ import {Theme, CSSProperties} from '../../utilities/theme/types';
 import {setColors} from '../../utilities/theme/legacy-utils';
 import {Colors} from '../../utilities/theme/utils';
 
+import styles from './ThemeProvider.scss';
+
 interface State {
   theme: Theme;
   colors: CSSProperties | undefined;
@@ -63,7 +65,9 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
     return (
       <ThemeContext.Provider value={theme}>
         <div style={legacyStyles}>
-          <div style={colors}>{children}</div>
+          <div style={colors} className={styles.ThemeProvider}>
+            {children}
+          </div>
         </div>
       </ThemeContext.Provider>
     );
@@ -81,7 +85,6 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
 }
 
 function setThemeContext(ctx: Theme): Theme {
-  // TODO: consider adding legacy colors to theme context
   const {colors, ...theme} = ctx;
   return {...theme};
 }
