@@ -3,52 +3,54 @@ import {needsVariant, setColors, setTextColor, setTheme} from '../legacy-utils';
 import {needsVariantList} from '../legacy-config';
 import {Colors} from '../utils';
 
-describe('setTextColor', () => {
-  it('sets a css variable to white if the variant is dark', () => {
-    const textColor = setTextColor('topBar', 'dark');
-    expect(textColor).toStrictEqual(['topBar', tokens.colorWhite]);
+describe('legacy utils', () => {
+  describe('setTextColor', () => {
+    it('sets a css variable to white if the variant is dark', () => {
+      const textColor = setTextColor('topBar', 'dark');
+      expect(textColor).toStrictEqual(['topBar', tokens.colorWhite]);
+    });
+
+    it('sets a css variable to ink if the variant is light', () => {
+      const textColor = setTextColor('topBar', 'light');
+      expect(textColor).toStrictEqual(['topBar', tokens.colorInk]);
+    });
   });
 
-  it('sets a css variable to ink if the variant is light', () => {
-    const textColor = setTextColor('topBar', 'light');
-    expect(textColor).toStrictEqual(['topBar', tokens.colorInk]);
-  });
-});
+  describe('setTheme', () => {
+    it('returns a base theme', () => {
+      const theme = setTheme(
+        {hue: 184, saturation: 100, lightness: 28},
+        'topBar',
+        'background',
+        'dark',
+      );
 
-describe('setTheme', () => {
-  it('returns a base theme', () => {
-    const theme = setTheme(
-      {hue: 184, saturation: 100, lightness: 28},
-      'topBar',
-      'background',
-      'dark',
-    );
-
-    expect(theme).toStrictEqual([
-      ['--top-bar-color', 'rgb(255, 255, 255)'],
-      ['--top-bar-background-lighter', 'hsl(184, 85%, 43%, 1)'],
-    ]);
-  });
-});
-
-describe('needsVariant', () => {
-  it('will return false if the parameter is not on the list', () => {
-    const hasVariant = needsVariant('frame');
-    expect(hasVariant).toBe(needsVariantList.includes('frame'));
+      expect(theme).toStrictEqual([
+        ['--top-bar-color', 'rgb(255, 255, 255)'],
+        ['--top-bar-background-lighter', 'hsl(184, 85%, 43%, 1)'],
+      ]);
+    });
   });
 
-  it('will return true if the paramater is on the list', () => {
-    const hasVariant = needsVariant('topBar');
-    expect(hasVariant).toBe(needsVariantList.includes('topBar'));
-  });
-});
+  describe('needsVariant', () => {
+    it('will return false if the parameter is not on the list', () => {
+      const hasVariant = needsVariant('frame');
+      expect(hasVariant).toBe(needsVariantList.includes('frame'));
+    });
 
-describe('setColors', () => {
-  it('iterates over colors when a theme is passed', () => {
-    const theme = {colors: {topBar: {background: '#eeeeee'}}};
-    const spy = jest.spyOn(Object, 'entries');
-    setColors(theme);
-    expect(spy).toHaveBeenCalledWith(theme.colors);
+    it('will return true if the paramater is on the list', () => {
+      const hasVariant = needsVariant('topBar');
+      expect(hasVariant).toBe(needsVariantList.includes('topBar'));
+    });
+  });
+
+  describe('setColors', () => {
+    it('iterates over colors when a theme is passed', () => {
+      const theme = {colors: {topBar: {background: '#eeeeee'}}};
+      const spy = jest.spyOn(Object, 'entries');
+      setColors(theme);
+      expect(spy).toHaveBeenCalledWith(theme.colors);
+    });
   });
 });
 

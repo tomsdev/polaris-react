@@ -3,8 +3,16 @@ import {colorToHsla, hslToString, hslToRgb} from '../color-transformers';
 import {isLight} from '../color-validation';
 import {CSSProperties, Theme} from './types';
 
+// TODO: Move this to a settings prop on app provider and
+// make available through context
+enum FakeSetting {
+  Theming = 1,
+  // Theming = 0,
+}
+
 // TODO: Pull from polaris-tokens
 enum DefaultColor {
+  // Surface = '#111213',
   Surface = '#FAFAFA',
   OnSurface = '#1F2225',
   InteractiveNeutral = '#EAEAEB',
@@ -18,6 +26,8 @@ enum DefaultColor {
 
 export function Colors(theme: Theme) {
   const {colors = {}} = theme;
+
+  if (FakeSetting.Theming === 0) return;
 
   const isLightTheme = isLight(
     hslToRgb(colorToHsla(
@@ -48,6 +58,7 @@ export function Colors(theme: Theme) {
     ...warningColors(warning),
     ...highlightColors(highlight),
     ...successColors(success),
+    ...overrides(),
   });
 
   function surfaceColors(baseColor: string): CSSProperties {
@@ -647,6 +658,17 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 15 : 85,
       }),
+    };
+  }
+
+  // TODO: Review naming for these overrides. Should we namespace?
+  function overrides() {
+    return {
+      none: 'none',
+      transparent: 'transparent',
+      zero: '0',
+      buttonFontWeight: '500',
+      focusRingContent: "''",
     };
   }
 }
