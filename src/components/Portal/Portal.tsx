@@ -22,7 +22,7 @@ export class Portal extends React.PureComponent<PortalProps, State> {
   state: State = {isMounted: false};
 
   private portalNode: HTMLElement;
-  private portalContainerNode: Element;
+  private portalContainerNode: HTMLElement?;
 
   private portalId =
     this.props.idPrefix !== ''
@@ -32,9 +32,8 @@ export class Portal extends React.PureComponent<PortalProps, State> {
   componentDidMount() {
     this.portalNode = document.createElement('div');
     this.portalNode.setAttribute('data-portal-id', this.portalId);
-    const portalContainer = document.querySelector(`${themeProvider.selector}`);
-    if (portalContainer != null) {
-      this.portalContainerNode = portalContainer;
+    this.portalContainerNode = document.querySelector(`${themeProvider.selector}`);
+    if (this.portalContainerNode != null) {
       this.portalContainerNode.appendChild(this.portalNode);
     }
 
@@ -49,7 +48,9 @@ export class Portal extends React.PureComponent<PortalProps, State> {
   }
 
   componentWillUnmount() {
-    this.portalContainerNode.removeChild(this.portalNode);
+    if (this.portalContainerNode != null) {
+      this.portalContainerNode.removeChild(this.portalNode);
+    }
   }
 
   render() {
