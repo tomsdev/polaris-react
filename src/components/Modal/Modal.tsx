@@ -77,6 +77,8 @@ export interface ModalProps extends FooterProps {
   onTransitionEnd?(): void;
   /** Callback when the bottom of the modal content is reached */
   onScrolledToBottom?(): void;
+  /** Element that opens and closes the modal */
+  activator?: React.ReactElement;
 }
 type CombinedProps = ModalProps & WithAppProviderProps;
 
@@ -108,6 +110,8 @@ class Modal extends React.Component<CombinedProps, State> {
     | AppBridgeModal.ModalMessage
     | AppBridgeModal.ModalIframe
     | undefined;
+
+  private activatorRef = React.createRef<HTMLElement>();
 
   componentDidMount() {
     if (this.props.polaris.appBridge == null) {
@@ -215,12 +219,12 @@ class Modal extends React.Component<CombinedProps, State> {
       loading,
       large,
       limitHeight,
-      onClose,
       footer,
       primaryAction,
       secondaryActions,
       polaris: {intl},
       onScrolledToBottom,
+      activator,
     } = this.props;
 
     const {iframeHeight} = this.state;
@@ -272,12 +276,16 @@ class Modal extends React.Component<CombinedProps, State> {
       );
 
       const headerMarkup = title ? (
-        <Header id={this.headerId} onClose={onClose} testID="ModalHeader">
+        <Header
+          id={this.headerId}
+          onClose={this.handleOnClose}
+          testID="ModalHeader"
+        >
           {title}
         </Header>
       ) : (
         <CloseButton
-          onClick={onClose}
+          onClick={this.handleOnClose}
           title={false}
           testID="ModalCloseButton"
         />
@@ -289,7 +297,7 @@ class Modal extends React.Component<CombinedProps, State> {
         <Dialog
           instant={instant}
           labelledBy={labelledBy}
-          onClose={onClose}
+          onClose={this.handleOnClose}
           onEntered={this.handleEntered}
           onExited={this.handleExited}
           large={large}
@@ -306,8 +314,13 @@ class Modal extends React.Component<CombinedProps, State> {
 
     const animated = !instant;
 
+    const trigger = activator
+      ? React.cloneElement(activator, {ref: this.activatorRef})
+      : null;
+
     return (
       <WithinContentContext.Provider value>
+        {trigger}
         <Portal idPrefix="modal">
           <TransitionGroup appear={animated} enter={animated} exit={animated}>
             {dialog}
@@ -317,6 +330,16 @@ class Modal extends React.Component<CombinedProps, State> {
       </WithinContentContext.Provider>
     );
   }
+
+  private handleOnClose = () => {
+    const {onClose} = this.props;
+
+    onClose();
+
+    // this.activatorRef &&
+    //   this.activatorRef.current &&
+    //   this.activatorRef.current.focus();
+  };
 
   private handleEntered = () => {
     const {onTransitionEnd} = this.props;
@@ -333,6 +356,10 @@ class Modal extends React.Component<CombinedProps, State> {
     if (this.focusReturnPointNode) {
       write(() => focusFirstFocusableNode(this.focusReturnPointNode, false));
     }
+
+    this.activatorRef &&
+      this.activatorRef.current &&
+      this.activatorRef.current.focus();
   };
 
   private handleIFrameLoad = (evt: React.SyntheticEvent<HTMLIFrameElement>) => {

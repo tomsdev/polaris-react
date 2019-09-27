@@ -64,7 +64,9 @@ export class TrapFocus extends React.PureComponent<TrapFocusProps, State> {
   }
 
   private setFocusTrapWrapper = (node: HTMLDivElement) => {
-    this.focusTrapWrapper = node;
+    if (node) {
+      this.focusTrapWrapper = node;
+    }
   };
 
   private handleBlur = (event: FocusEvent) => {
