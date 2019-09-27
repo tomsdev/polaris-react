@@ -81,7 +81,6 @@ export class ThemeProvider extends React.Component<ThemeProviderProps, State> {
 }
 
 function setThemeContext(ctx: Theme): Theme {
-  // TODO: consider adding legacy colors to theme context
   const {colors, ...theme} = ctx;
   return {...theme};
 }
