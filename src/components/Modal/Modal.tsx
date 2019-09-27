@@ -335,10 +335,6 @@ class Modal extends React.Component<CombinedProps, State> {
     const {onClose} = this.props;
 
     onClose();
-
-    // this.activatorRef &&
-    //   this.activatorRef.current &&
-    //   this.activatorRef.current.focus();
   };
 
   private handleEntered = () => {

@@ -120,8 +120,9 @@ export const Button = forwardRef(function(
     focus: () => {
       const element = buttonRef.current;
 
-      // setTimeout(function(){ element && element.focus(); }, 1000);
-      element && element.focus();
+      setTimeout(function() {
+        element && element.focus();
+      }, 1);
     },
   }));
 
