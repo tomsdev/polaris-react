@@ -12,8 +12,8 @@ enum FakeSetting {
 
 // TODO: Pull from polaris-tokens
 enum DefaultColor {
-  // Surface = '#111213',
-  Surface = '#FAFAFA',
+  Surface = '#111213',
+  // Surface = '#FAFAFA',
   OnSurface = '#1F2225',
   InteractiveNeutral = '#EAEAEB',
   Interactive = '#0870D9',
@@ -217,22 +217,22 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 95 : 70,
       }),
-      dividerMutedOnDark: hslToString({
+      dividerSubduedOnDark: hslToString({
         hue,
         saturation,
         lightness: 75,
       }),
-      dividerMutedOnLight: hslToString({
+      dividerSubduedOnLight: hslToString({
         hue,
         saturation,
         lightness: 85,
       }),
-      dividerMutedOnOpposite: hslToString({
+      dividerSubduedOnOpposite: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 75 : 85,
       }),
-      dividerMutedOnSurface: hslToString({
+      dividerSubduedOnSurface: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 85 : 75,
@@ -277,22 +277,22 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 68 : 75,
       }),
-      iconMutedOnDark: hslToString({
+      iconSubduedOnDark: hslToString({
         hue,
         saturation,
         lightness: 88,
       }),
-      iconMutedOnLight: hslToString({
+      iconSubduedOnLight: hslToString({
         hue,
         saturation,
         lightness: 43,
       }),
-      iconMutedOnOpposite: hslToString({
+      iconSubduedOnOpposite: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 88 : 43,
       }),
-      iconMutedOnSurface: hslToString({
+      iconSubduedOnSurface: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 43 : 88,
@@ -337,22 +337,22 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 63 : 80,
       }),
-      textMutedOnDark: hslToString({
+      textSubduedOnDark: hslToString({
         hue,
         saturation,
         lightness: 90,
       }),
-      textMutedOnLight: hslToString({
+      textSubduedOnLight: hslToString({
         hue,
         saturation,
         lightness: 38,
       }),
-      textMutedOnOpposite: hslToString({
+      textSubduedOnOpposite: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 90 : 38,
       }),
-      textMutedOnSurface: hslToString({
+      textSubduedOnSurface: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 38 : 90,
@@ -381,7 +381,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 37 : 63,
       }),
-      interactiveActionMuted: hslToString({
+      interactiveActionSubdued: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 51 : 49,
@@ -485,7 +485,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: 98,
       }),
-      iconMutedOnBranded: hslToString({
+      iconSubduedOnBranded: hslToString({
         hue,
         saturation,
         lightness: 88,
@@ -495,7 +495,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: 100,
       }),
-      textMutedOnBranded: hslToString({
+      textSubduedOnBranded: hslToString({
         hue,
         saturation,
         lightness: 90,
@@ -542,7 +542,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 88 : 12,
       }),
-      criticalSurfaceMuted: hslToString({
+      criticalSurfaceSubdued: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 98 : 2,
@@ -576,7 +576,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 88 : 12,
       }),
-      warningSurfaceMuted: hslToString({
+      warningSurfaceSubdued: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 98 : 2,
@@ -610,7 +610,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 88 : 12,
       }),
-      highlightSurfaceMuted: hslToString({
+      highlightSurfaceSubdued: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 98 : 2,
@@ -648,7 +648,7 @@ export function Colors(theme: Theme) {
         saturation,
         lightness: isLightTheme ? 88 : 12,
       }),
-      successSurfaceMuted: hslToString({
+      successSurfaceSubdued: hslToString({
         hue,
         saturation,
         lightness: isLightTheme ? 98 : 2,
